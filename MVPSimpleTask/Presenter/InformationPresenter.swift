@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 protocol InfoPresenterDelegate {
     func presentInfo()
@@ -29,7 +30,8 @@ struct InformationPresenter: InfoPresenterDelegate {
         AF.request(url).responseDecodable { (response : (DataResponse<User, AFError>)) in
             switch response.result {
             case .success(let user):
-                print("User's data fetched perfectly. \(user)")
+                let json = JSON(user)
+                print("User's data fetched perfectly. \(json)")
             case .failure(let error):
                 print("There was a problem fetching user's data. \(error)")
             }
