@@ -7,16 +7,25 @@
 
 import UIKit
 
-class InformationViewController: UIViewController {
+protocol InfoView: AnyObject {
+    
+}
+
+class InformationViewController: UIViewController, InfoView {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var starsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    var delegate: InfoPresenterDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoCell")
+        delegate = InformationPresenter(mainView: self)
+        delegate?.fetchInfo()
     }
 }
 
@@ -26,7 +35,9 @@ extension InformationViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell", for: indexPath) as! RepoTableViewCell
+        
+        return cell
     }
     
     

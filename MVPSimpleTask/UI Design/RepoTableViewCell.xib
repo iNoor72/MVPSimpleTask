@@ -30,12 +30,13 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="xKv-fr-OGm" firstAttribute="top" secondItem="b98-Yf-LA6" secondAttribute="bottom" constant="8" id="3vJ-jV-edi"/>
+                    <constraint firstAttribute="bottom" secondItem="xKv-fr-OGm" secondAttribute="bottom" constant="26" id="5jd-mN-4hC"/>
                     <constraint firstAttribute="trailing" secondItem="b98-Yf-LA6" secondAttribute="trailing" constant="20" id="9cx-AG-9d8"/>
-                    <constraint firstItem="xKv-fr-OGm" firstAttribute="top" secondItem="b98-Yf-LA6" secondAttribute="bottom" constant="8" id="EKx-Ql-Eye"/>
                     <constraint firstItem="b98-Yf-LA6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Mx0-3G-cGk"/>
-                    <constraint firstItem="xKv-fr-OGm" firstAttribute="leading" secondItem="b98-Yf-LA6" secondAttribute="leading" id="PSW-o8-HOP"/>
                     <constraint firstItem="b98-Yf-LA6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Usb-nl-u6e"/>
-                    <constraint firstAttribute="trailing" secondItem="xKv-fr-OGm" secondAttribute="trailing" constant="20" id="dTk-bj-bZi"/>
+                    <constraint firstItem="xKv-fr-OGm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ho1-gn-ozf"/>
+                    <constraint firstAttribute="trailing" secondItem="xKv-fr-OGm" secondAttribute="trailing" constant="20" id="ynu-Xp-UQk"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
