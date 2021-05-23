@@ -8,10 +8,11 @@
 import UIKit
 
 protocol InfoView: AnyObject {
-    
+    func presentInfo()
 }
 
 class InformationViewController: UIViewController, InfoView {
+    
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var starsLabel: UILabel!
@@ -24,8 +25,14 @@ class InformationViewController: UIViewController, InfoView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoCell")
-        delegate = InformationPresenter(mainView: self)
+        delegate = InformationPresenter(view: self)
         delegate?.fetchInfo()
+    }
+    
+    func presentInfo() {
+        //force unwrap here needs to be solved
+        userImage.image = delegate?.fetchUserImage(user: (delegate?.user!)!)
+        usernameLabel.text = delegate?.user?.name
     }
 }
 
@@ -39,6 +46,4 @@ extension InformationViewController: UITableViewDelegate, UITableViewDataSource 
         
         return cell
     }
-    
-    
 }

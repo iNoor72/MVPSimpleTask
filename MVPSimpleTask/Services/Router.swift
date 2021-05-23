@@ -20,9 +20,9 @@ enum Router: URLConvertible{
         //Pass user's id to be added to the baseURL
         
         case .userInfo:
-            return "hi"
+            return "iNoor72"
         case .userRepos:
-            return "hi"
+            return "iNoor72/repos"
         }
         
     }

@@ -10,32 +10,45 @@ import Alamofire
 import SwiftyJSON
 
 protocol InfoPresenterDelegate {
+    var user: User? {get}
     func presentInfo()
     func fetchInfo()
+    func fetchUserImage(user: User) -> UIImage
 }
 
-struct InformationPresenter: InfoPresenterDelegate {
-  
+class InformationPresenter: InfoPresenterDelegate {
     
-    var mainView: InfoView
+    weak var mainView: InfoView?
+    var user: User?
     
-    
+    init(view: InfoView) {
+        self.mainView = view
+    }
     
     func presentInfo() {
-        
+        mainView?.presentInfo()
     }
     
     func fetchInfo() {
         let url = Router.userInfo
-        AF.request(url).responseDecodable { (response : (DataResponse<User, AFError>)) in
+        AF.request(url).responseDecodable { [weak self] (response : (DataResponse<User, AFError>)) in
             switch response.result {
-            case .success(let user):
-                let json = JSON(user)
+            case .success(let userInfo):
+                let json = JSON(userInfo)
+                self?.user = userInfo
+                self?.fetchUserImage(user: userInfo)
                 print("User's data fetched perfectly. \(json)")
             case .failure(let error):
                 print("There was a problem fetching user's data. \(error)")
             }
         }
+    }
+    
+    func fetchUserImage(user: User) -> UIImage {
+        //Use alamofire to fetch the user's image using the image url sent from the API call
+        //then, return the image so it can be used in the View Layer.
+        var image = UIImage()
+        return image
     }
     
     
