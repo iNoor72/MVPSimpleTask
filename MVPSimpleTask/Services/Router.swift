@@ -8,21 +8,19 @@
 import Foundation
 import Alamofire
 
-enum Router: URLConvertible{
+enum Router: URLRequestConvertible{
     
-    static let baseURL = "https://api.github.com/users/"
+    static let baseURL = "https://api.github.com/users"
     
     case userInfo
     case userRepos
     
     var path: String {
         switch self {
-        //Pass user's id to be added to the baseURL
-        
         case .userInfo:
-            return "iNoor72"
+            return "/iNoor72"
         case .userRepos:
-            return "iNoor72/repos"
+            return "/iNoor72/repos"
         }
         
     }
@@ -36,13 +34,10 @@ enum Router: URLConvertible{
         }
     }
     
-    
-    
-    func asURL() throws -> URL {
+    func asURLRequest() throws -> URLRequest {
         let url = URL(string: Router.baseURL)!
         let request = URLRequest(url: url.appendingPathComponent(path))
-        return url
+        return request
     }
-    
     
 }
