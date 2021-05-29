@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2670A0D556825AFB15E5102C /* Pods_MVPSimpleTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71BD8C16C26721C56D6456C /* Pods_MVPSimpleTask.framework */; };
+		7C4FBA6E26628A8F0001A1F6 /* ReposDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4FBA6D26628A8F0001A1F6 /* ReposDetailsPresenter.swift */; };
 		7C78939B2656FD4E003CE002 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C78939A2656FD4E003CE002 /* Router.swift */; };
 		7C7893A02656FFE5003CE002 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C78939E2656FFE5003CE002 /* RepoTableViewCell.swift */; };
 		7C7893A12656FFE5003CE002 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C78939F2656FFE5003CE002 /* RepoTableViewCell.xib */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C4FBA6D26628A8F0001A1F6 /* ReposDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposDetailsPresenter.swift; sourceTree = "<group>"; };
 		7C78939A2656FD4E003CE002 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7C78939E2656FFE5003CE002 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
 		7C78939F2656FFE5003CE002 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				7CEF4B182657A55400FA67B4 /* InformationPresenter.swift */,
+				7C4FBA6D26628A8F0001A1F6 /* ReposDetailsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				7C7893A02656FFE5003CE002 /* RepoTableViewCell.swift in Sources */,
 				7CEF4B122657A27700FA67B4 /* User.swift in Sources */,
 				7CEF4B152657A33700FA67B4 /* UserRepos.swift in Sources */,
+				7C4FBA6E26628A8F0001A1F6 /* ReposDetailsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
