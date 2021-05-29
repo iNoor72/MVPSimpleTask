@@ -8,7 +8,9 @@
 import UIKit
 
 class RepoTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var repoNameLabel: UILabel!
+    @IBOutlet weak var starsLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

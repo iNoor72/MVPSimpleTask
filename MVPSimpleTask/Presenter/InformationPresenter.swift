@@ -17,7 +17,6 @@ protocol InfoPresenterDelegate {
 }
 
 class InformationPresenter: InfoPresenterDelegate {
-    
     weak var mainView: InfoView?
     var user: User?
     
@@ -34,10 +33,11 @@ class InformationPresenter: InfoPresenterDelegate {
         AF.request(url).responseDecodable { [weak self] (response : (DataResponse<User, AFError>)) in
             switch response.result {
             case .success(let userInfo):
-                let json = JSON(userInfo)
+                //This line is for SwiftyJSON
+                //let json = JSON(userInfo)
                 self?.user = userInfo
                 self?.fetchUserImage(user: userInfo)
-                print("User's data fetched perfectly. \(json)")
+                print("User's data fetched perfectly. \(userInfo)")
             case .failure(let error):
                 print("There was a problem fetching user's data. \(error)")
             }

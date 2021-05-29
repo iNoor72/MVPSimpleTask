@@ -13,5 +13,13 @@ struct UserRepos: Codable {
 
 struct Repos: Codable {
     var name: String
-    var stargazers_count: Int
+    var repoURL: String
+    var stars: Int
+    var language: String
+    
+    enum CodingKeys: String, CodingKey {
+        case repoURL = "full_name"
+        case name, language
+        case stars = "stargazers_count"
+    }
 }

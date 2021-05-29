@@ -10,8 +10,15 @@ import Foundation
 struct User: Codable {
     var name: String
     var bio: String
-    var avatar_url: String
+    var imageURL: String
     var url: String
-    var repos_url: String
-    var public_repos: Int
+    var reposURL: String
+    var reposCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case name, url, bio
+        case imageURL = "avatar_url"
+        case reposURL = "repos_url"
+        case reposCount = "public_repos"
+    }
 }

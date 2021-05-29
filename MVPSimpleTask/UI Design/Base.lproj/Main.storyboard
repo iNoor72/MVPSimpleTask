@@ -68,16 +68,36 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="128.57142857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="LRl-sc-FID">
             <objects>
-                <viewController id="OPX-9A-j2e" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RepoDetails" id="OPX-9A-j2e" customClass="DetailsViewController" customModule="MVPSimpleTask" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6ba-A9-wg4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repo name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMb-Wm-CGJ">
+                                <rect key="frame" x="175" y="117" width="86" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="stars label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jf-Nu-7j8">
+                                <rect key="frame" x="179" y="177" width="78" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="uRr-uV-vsC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="repoNameLabel" destination="PMb-Wm-CGJ" id="XMC-a6-l4d"/>
+                        <outlet property="starsLabel" destination="7jf-Nu-7j8" id="XtD-Z7-C8M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ei-6e-06C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
