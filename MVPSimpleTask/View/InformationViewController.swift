@@ -8,6 +8,8 @@
 import UIKit
 
 protocol InfoView: AnyObject {
+    var user: User? { get set }
+    var repos: UserRepos? { get set }
     func presentInfo()
 }
 
@@ -30,11 +32,13 @@ class InformationViewController: UIViewController, InfoView {
         tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoCell")
         delegate = InformationPresenter(view: self)
         delegate?.fetchInfo()
+        presentInfo()
     }
     
     func presentInfo() {
         userImage.image = delegate?.fetchUserImage(user: user ?? User(name: "", bio: "", imageURL: "", url: "", reposURL: "", reposCount: 0))
-        usernameLabel.text = user?.name
+        usernameLabel.text = user?.name ?? "No name fetched until now"
+        starsLabel.text = "\(user?.reposCount ?? 0) 📁"
     }
 }
 

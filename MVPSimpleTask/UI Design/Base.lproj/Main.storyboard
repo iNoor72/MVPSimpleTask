@@ -71,21 +71,19 @@
         <!--Details View Controller-->
         <scene sceneID="LRl-sc-FID">
             <objects>
-                <viewController storyboardIdentifier="RepoDetails" id="OPX-9A-j2e" customClass="DetailsViewController" customModule="MVPSimpleTask" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RepoDetails" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OPX-9A-j2e" customClass="DetailsViewController" customModule="MVPSimpleTask" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6ba-A9-wg4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repo name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMb-Wm-CGJ">
-                                <rect key="frame" x="175" y="117" width="86" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMb-Wm-CGJ">
+                                <rect key="frame" x="20" y="144" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="stars label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jf-Nu-7j8">
-                                <rect key="frame" x="179" y="177" width="78" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stars label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jf-Nu-7j8">
+                                <rect key="frame" x="20" y="197" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -93,6 +91,14 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uRr-uV-vsC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uRr-uV-vsC" firstAttribute="trailing" secondItem="PMb-Wm-CGJ" secondAttribute="trailing" constant="20" id="39p-Q8-e5k"/>
+                            <constraint firstItem="7jf-Nu-7j8" firstAttribute="leading" secondItem="uRr-uV-vsC" secondAttribute="leading" constant="20" id="JGF-kf-Hgn"/>
+                            <constraint firstItem="PMb-Wm-CGJ" firstAttribute="top" secondItem="uRr-uV-vsC" secondAttribute="top" constant="100" id="dgW-w0-lHP"/>
+                            <constraint firstItem="7jf-Nu-7j8" firstAttribute="top" secondItem="PMb-Wm-CGJ" secondAttribute="bottom" constant="32" id="dtU-sU-MCg"/>
+                            <constraint firstItem="uRr-uV-vsC" firstAttribute="trailing" secondItem="7jf-Nu-7j8" secondAttribute="trailing" constant="20" id="gNj-af-UsJ"/>
+                            <constraint firstItem="PMb-Wm-CGJ" firstAttribute="leading" secondItem="uRr-uV-vsC" secondAttribute="leading" constant="20" id="vPa-hl-yc8"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="repoNameLabel" destination="PMb-Wm-CGJ" id="XMC-a6-l4d"/>

@@ -6,10 +6,10 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol ReposDetailsDelegateProtocol {
     func presentReposInfo()
-    func fetchReposInfo()
 }
 
 class ReposDetailsPresenter: ReposDetailsDelegateProtocol {
@@ -18,12 +18,6 @@ class ReposDetailsPresenter: ReposDetailsDelegateProtocol {
     init(view: ReposView) {
         self.reposView = view
     }
-    
-    func fetchReposInfo() {
-        let url = Router.userRepos
-    }
-    
-    
     
     func presentReposInfo() {
         reposView?.presentReposInfo()
