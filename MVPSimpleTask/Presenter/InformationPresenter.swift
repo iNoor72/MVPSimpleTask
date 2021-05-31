@@ -10,6 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 protocol InfoPresenterDelegate {
+    var user: User? { get set }
     func presentInfo()
     func fetchInfo()
     func fetchUserImage(user: User) -> UIImage
@@ -17,9 +18,11 @@ protocol InfoPresenterDelegate {
 
 class InformationPresenter: InfoPresenterDelegate {
     weak var mainView: InfoView?
+    var user: User?
     
     init(view: InfoView) {
         self.mainView = view
+        self.fetchInfo()
     }
     
     func presentInfo() {
@@ -33,8 +36,13 @@ class InformationPresenter: InfoPresenterDelegate {
             case .success(let userInfo):
                 //This line is for SwiftyJSON
                 //let json = JSON(userInfo)
-                self?.mainView?.user = userInfo
+                self?.user = userInfo
                 self?.fetchUserImage(user: userInfo)
+                self?.presentInfo()
+                DispatchQueue.main.async {
+                    self?.mainView?.reloadTableView()
+                }
+                
                 print("User's data fetched perfectly. \(userInfo)")
             case .failure(let error):
                 print("There was a problem fetching user's data. \(error)")

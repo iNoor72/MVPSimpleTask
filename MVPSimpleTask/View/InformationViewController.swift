@@ -8,8 +8,9 @@
 import UIKit
 
 protocol InfoView: AnyObject {
-    var user: User? { get set }
+//    var user: User? { get set }
     var repos: UserRepos? { get set }
+    func reloadTableView()
     func presentInfo()
 }
 
@@ -20,7 +21,7 @@ class InformationViewController: UIViewController, InfoView {
     @IBOutlet weak var starsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var user: User?
+//    var user: User?
     var repos: UserRepos?
     
     var delegate: InfoPresenterDelegate?
@@ -36,15 +37,19 @@ class InformationViewController: UIViewController, InfoView {
     }
     
     func presentInfo() {
-        userImage.image = delegate?.fetchUserImage(user: user ?? User(name: "", bio: "", imageURL: "", url: "", reposURL: "", reposCount: 0))
-        usernameLabel.text = user?.name ?? "No name fetched until now"
-        starsLabel.text = "\(user?.reposCount ?? 0) 📁"
+        userImage.image = delegate?.fetchUserImage(user: delegate?.user ?? User(name: "", bio: "", imageURL: "", url: "", reposURL: "", reposCount: 0))
+        usernameLabel.text = delegate?.user?.name ?? "No name fetched until now"
+        starsLabel.text = "\(delegate?.user?.reposCount ?? 0) 📁"
+    }
+    
+    func reloadTableView() {
+        self.tableView.reloadData()
     }
 }
 
 extension InformationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user?.reposCount ?? 3
+        return delegate?.user?.reposCount ?? 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
