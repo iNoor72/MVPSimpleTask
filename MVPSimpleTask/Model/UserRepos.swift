@@ -9,10 +9,6 @@ import Foundation
 
 struct UserRepos: Codable {
     var data: [Repos]
-    
-    init() {
-        self.data = [Repos]()
-    }
 }
 
 struct Repos: Codable {

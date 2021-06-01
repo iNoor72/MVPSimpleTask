@@ -41,7 +41,7 @@ class InformationPresenter: InfoPresenterDelegate {
                 //This line is for SwiftyJSON
                 //let json = JSON(userInfo)
                 self?.user = userInfo
-                self?.fetchUserImage(user: userInfo)
+                //self?.fetchUserImage(user: userInfo)
                 self?.presentInfo()
                 DispatchQueue.main.async {
                     self?.mainView?.reloadTableView()

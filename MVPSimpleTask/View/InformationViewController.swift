@@ -23,6 +23,7 @@ class InformationViewController: UIViewController, InfoView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoCell")
@@ -30,6 +31,11 @@ class InformationViewController: UIViewController, InfoView {
         delegate?.fetchUserInfo()
         delegate?.fetchUserRepos()
         presentInfo()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
     
     func presentInfo() {
@@ -60,5 +66,6 @@ extension InformationViewController: UITableViewDelegate, UITableViewDataSource 
         destination.repoName = delegate?.repos?.data[indexPath.row].name ?? "No Repo Name"
         destination.stars = "\(delegate?.repos?.data[indexPath.row].stars ?? 0) ⭐️"
         navigationController?.pushViewController(destination, animated: true)
+//        navigationController?.present(destination, animated: true, completion: nil)
     }
 }
