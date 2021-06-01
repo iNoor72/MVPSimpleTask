@@ -8,8 +8,6 @@
 import UIKit
 
 protocol InfoView: AnyObject {
-//    var user: User? { get set }
-    var repos: UserRepos? { get set }
     func reloadTableView()
     func presentInfo()
 }
@@ -21,9 +19,6 @@ class InformationViewController: UIViewController, InfoView {
     @IBOutlet weak var starsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-//    var user: User?
-    var repos: UserRepos?
-    
     var delegate: InfoPresenterDelegate?
     
     override func viewDidLoad() {
@@ -32,7 +27,8 @@ class InformationViewController: UIViewController, InfoView {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoCell")
         delegate = InformationPresenter(view: self)
-        delegate?.fetchInfo()
+        delegate?.fetchUserInfo()
+        delegate?.fetchUserRepos()
         presentInfo()
     }
     
@@ -54,15 +50,15 @@ extension InformationViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell", for: indexPath) as! RepoTableViewCell
-        cell.repoNameLabel.text = repos?.data[indexPath.row].name ?? "No data"
-        cell.starsLabel.text = "\(repos?.data[indexPath.row].stars ?? 0) ⭐️"
+        cell.repoNameLabel.text = delegate?.repos?.data[indexPath.row].name ?? "No data"
+        cell.starsLabel.text = "\(delegate?.repos?.data[indexPath.row].stars ?? 0) ⭐️"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destination = storyboard?.instantiateViewController(identifier: "RepoDetails") as! DetailsViewController
-        destination.repoName = repos?.data[indexPath.row].name ?? "No Repo Name"
-        destination.stars = "\(repos?.data[indexPath.row].stars ?? 0) ⭐️"
+        destination.repoName = delegate?.repos?.data[indexPath.row].name ?? "No Repo Name"
+        destination.stars = "\(delegate?.repos?.data[indexPath.row].stars ?? 0) ⭐️"
         navigationController?.pushViewController(destination, animated: true)
     }
 }

@@ -11,25 +11,29 @@ import SwiftyJSON
 
 protocol InfoPresenterDelegate {
     var user: User? { get set }
+    var repos: UserRepos? { get set }
     func presentInfo()
-    func fetchInfo()
+    func fetchUserInfo()
+    func fetchUserRepos()
     func fetchUserImage(user: User) -> UIImage
 }
 
 class InformationPresenter: InfoPresenterDelegate {
+    
     weak var mainView: InfoView?
     var user: User?
+    var repos: UserRepos?
     
     init(view: InfoView) {
         self.mainView = view
-        self.fetchInfo()
+//        self.fetchInfo()
     }
     
     func presentInfo() {
         mainView?.presentInfo()
     }
     
-    func fetchInfo() {
+    func fetchUserInfo() {
         let userURL = Router.userInfo
         AF.request(userURL).responseDecodable { [weak self] (response : (DataResponse<User, AFError>)) in
             switch response.result {
@@ -48,12 +52,16 @@ class InformationPresenter: InfoPresenterDelegate {
                 print("There was a problem fetching user's data. \(error)")
             }
         }
-        
+    }
+    
+    func fetchUserRepos() {
         let reposURL = Router.userRepos
         AF.request(reposURL).responseDecodable { (response : (DataResponse<UserRepos, AFError>)) in
             switch response.result {
-            case .success(let repos):
-                self.mainView?.repos = repos
+            case .success(let userRepos):
+                self.repos = userRepos
+                self.presentInfo()
+                self.mainView?.reloadTableView()
             case .failure(let error):
                 print("There was an error fetching the user's repos. \(error)")
             }
