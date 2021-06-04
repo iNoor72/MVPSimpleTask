@@ -9,10 +9,15 @@ import Foundation
 import Alamofire
 
 protocol ReposDetailsDelegateProtocol {
+    var repoName: String? { get set }
+    var stars: Int? { get set }
     func presentReposInfo()
 }
 
 class ReposDetailsPresenter: ReposDetailsDelegateProtocol {
+    var repoName: String?
+    var stars: Int?
+    
     weak var reposView: ReposView?
     
     init(view: ReposView) {

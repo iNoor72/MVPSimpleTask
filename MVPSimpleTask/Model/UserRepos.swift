@@ -8,18 +8,16 @@
 import Foundation
 
 struct UserRepos: Codable {
-    var data: [Repos]
+    var data: [Repo]
 }
 
-struct Repos: Codable {
+struct Repo: Codable {
     var name: String
-    var repoURL: String
     var stars: Int
     var language: String
     
     enum CodingKeys: String, CodingKey {
-        case repoURL = "full_name"
-        case name, language
+        case language, name
         case stars = "stargazers_count"
     }
 }

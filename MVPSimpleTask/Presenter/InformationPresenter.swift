@@ -41,29 +41,34 @@ class InformationPresenter: InfoPresenterDelegate {
                 //This line is for SwiftyJSON
                 //let json = JSON(userInfo)
                 self?.user = userInfo
-                //self?.fetchUserImage(user: userInfo)
+                //self?.fetchUserImage(user: userIn.fo)
                 self?.presentInfo()
                 DispatchQueue.main.async {
                     self?.mainView?.reloadTableView()
                 }
-                
                 print("User's data fetched perfectly. \(userInfo)")
             case .failure(let error):
-                print("There was a problem fetching user's data. \(error)")
+                print("There was a problem fetching user's data. \(error.localizedDescription)")
             }
         }
     }
     
+    //MARK:- Fetching Repos
+    
     func fetchUserRepos() {
-        let reposURL = Router.userRepos
-        AF.request(reposURL).responseDecodable { (response : (DataResponse<UserRepos, AFError>)) in
+        let reposURL = "https://api.github.com/users/iNoor72/repos"
+        AF.request(reposURL).responseDecodable { [weak self] (response : (DataResponse<UserRepos, AFError>)) in
             switch response.result {
             case .success(let userRepos):
-                self.repos = userRepos
-                self.presentInfo()
-                self.mainView?.reloadTableView()
+                print("Fetched usere's repos successfully.\(userRepos)")
+                self?.repos = userRepos
+                self?.presentInfo()
+                self?.mainView?.reloadTableView()
+                DispatchQueue.main.async {
+                    self?.mainView?.reloadTableView()
+                }
             case .failure(let error):
-                print("There was an error fetching the user's repos. \(error)")
+                print("There was an error fetching the user's repos. \(error.localizedDescription)")
             }
         }
     }

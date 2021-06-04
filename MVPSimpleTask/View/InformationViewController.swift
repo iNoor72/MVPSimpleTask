@@ -63,8 +63,8 @@ extension InformationViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destination = storyboard?.instantiateViewController(identifier: "RepoDetails") as! DetailsViewController
-        destination.repoName = delegate?.repos?.data[indexPath.row].name ?? "No Repo Name"
-        destination.stars = "\(delegate?.repos?.data[indexPath.row].stars ?? 0) ⭐️"
+        destination.delegate?.repoName = delegate?.repos?.data[indexPath.row].name ?? "No Repo Name"
+        destination.delegate?.stars = delegate?.repos?.data[indexPath.row].stars ?? 0
         navigationController?.pushViewController(destination, animated: true)
 //        navigationController?.present(destination, animated: true, completion: nil)
     }

@@ -18,9 +18,6 @@ class DetailsViewController: UIViewController, ReposView {
     
     var delegate: ReposDetailsDelegateProtocol?
     
-    var repoName: String = ""
-    var stars: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = ReposDetailsPresenter(view: self)
@@ -28,7 +25,7 @@ class DetailsViewController: UIViewController, ReposView {
     
     
     func presentReposInfo() {
-        repoNameLabel.text = repoName
-        starsLabel.text = stars
+        repoNameLabel.text = delegate?.repoName ?? "No name passed."
+        starsLabel.text = "\(delegate?.stars ?? 0)" ?? "No stars"
     }
 }
