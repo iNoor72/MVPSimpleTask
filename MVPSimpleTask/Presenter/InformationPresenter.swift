@@ -11,7 +11,7 @@ import SwiftyJSON
 
 protocol InfoPresenterDelegate {
     var user: User? { get set }
-    var repos: UserRepos? { get set }
+    var repos: [Repo]? { get set }
     func presentInfo()
     func fetchUserInfo()
     func fetchUserRepos()
@@ -22,7 +22,7 @@ class InformationPresenter: InfoPresenterDelegate {
     
     weak var mainView: InfoView?
     var user: User?
-    var repos: UserRepos?
+    var repos: [Repo]?
     
     init(view: InfoView) {
         self.mainView = view
@@ -57,7 +57,7 @@ class InformationPresenter: InfoPresenterDelegate {
     
     func fetchUserRepos() {
         let reposURL = "https://api.github.com/users/iNoor72/repos"
-        AF.request(reposURL).responseDecodable { [weak self] (response : (DataResponse<UserRepos, AFError>)) in
+        AF.request(reposURL).responseDecodable { [weak self] (response : (DataResponse<[Repo], AFError>)) in
             switch response.result {
             case .success(let userRepos):
                 print("Fetched usere's repos successfully.\(userRepos)")

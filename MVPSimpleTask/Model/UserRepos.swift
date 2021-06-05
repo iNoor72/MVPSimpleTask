@@ -14,7 +14,7 @@ struct UserRepos: Codable {
 struct Repo: Codable {
     var name: String
     var stars: Int
-    var language: String
+    var language: String?
     
     enum CodingKeys: String, CodingKey {
         case language, name

@@ -56,15 +56,15 @@ extension InformationViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell", for: indexPath) as! RepoTableViewCell
-        cell.repoNameLabel.text = delegate?.repos?.data[indexPath.row].name ?? "No data"
-        cell.starsLabel.text = "\(delegate?.repos?.data[indexPath.row].stars ?? 0) ⭐️"
+        cell.repoNameLabel.text = delegate?.repos?[indexPath.row].name ?? "No data"
+        cell.starsLabel.text = "\(delegate?.repos?[indexPath.row].stars ?? 0) ⭐️"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destination = storyboard?.instantiateViewController(identifier: "RepoDetails") as! DetailsViewController
-        destination.delegate?.repoName = delegate?.repos?.data[indexPath.row].name ?? "No Repo Name"
-        destination.delegate?.stars = delegate?.repos?.data[indexPath.row].stars ?? 0
+        destination.delegate?.repoName = delegate?.repos?[indexPath.row].name ?? "No Repo Name"
+        destination.delegate?.stars = delegate?.repos?[indexPath.row].stars ?? 0
         navigationController?.pushViewController(destination, animated: true)
 //        navigationController?.present(destination, animated: true, completion: nil)
     }
