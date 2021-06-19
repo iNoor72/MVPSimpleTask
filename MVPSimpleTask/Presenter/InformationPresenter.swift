@@ -12,7 +12,6 @@ import SwiftyJSON
 protocol InfoPresenterDelegate {
     var user: User? { get set }
     var repos: [Repo]? { get set }
-    func presentInfo()
     func fetchUserInfo()
     func fetchUserRepos()
     func fetchUserImage(user: User) -> UIImage
@@ -26,11 +25,6 @@ class InformationPresenter: InfoPresenterDelegate {
     
     init(view: InfoView) {
         self.mainView = view
-//        self.fetchInfo()
-    }
-    
-    func presentInfo() {
-        mainView?.presentInfo()
     }
     
     func fetchUserInfo() {
@@ -42,10 +36,7 @@ class InformationPresenter: InfoPresenterDelegate {
                 //let json = JSON(userInfo)
                 self?.user = userInfo
                 //self?.fetchUserImage(user: userIn.fo)
-                self?.presentInfo()
-                DispatchQueue.main.async {
-                    self?.mainView?.reloadTableView()
-                }
+                self?.mainView?.presentInfo()
                 print("User's data fetched perfectly. \(userInfo)")
             case .failure(let error):
                 print("There was a problem fetching user's data. \(error.localizedDescription)")
@@ -62,8 +53,6 @@ class InformationPresenter: InfoPresenterDelegate {
             case .success(let userRepos):
                 print("Fetched usere's repos successfully.\(userRepos)")
                 self?.repos = userRepos
-                self?.presentInfo()
-                self?.mainView?.reloadTableView()
                 DispatchQueue.main.async {
                     self?.mainView?.reloadTableView()
                 }
