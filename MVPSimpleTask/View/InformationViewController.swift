@@ -39,9 +39,9 @@ class InformationViewController: UIViewController, InfoView {
     }
     
     func presentInfo() {
-        userImage.image = delegate?.fetchUserImage(user: delegate?.user ?? User(name: "", bio: "", imageURL: "", url: "", reposURL: "", reposCount: 0))
-        usernameLabel.text = delegate?.user?.name ?? "No name fetched until now"
-        starsLabel.text = "\(delegate?.user?.reposCount ?? 0) 📁"
+        userImage.image = delegate?.fetchUserImage(url: delegate?.user?.imageURL ?? "shorturl.at/vyAJP")
+        usernameLabel.text = "👨‍💻 \(delegate?.user?.name ?? "No name fetched until now")"
+        starsLabel.text = "📁 \(delegate?.user?.reposCount ?? 0)"
     }
     
     func reloadTableView() {

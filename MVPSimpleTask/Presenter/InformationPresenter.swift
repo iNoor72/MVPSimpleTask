@@ -14,7 +14,7 @@ protocol InfoPresenterDelegate {
     var repos: [Repo]? { get set }
     func fetchUserInfo()
     func fetchUserRepos()
-    func fetchUserImage(user: User) -> UIImage
+    func fetchUserImage(url: String) -> UIImage
 }
 
 class InformationPresenter: InfoPresenterDelegate {
@@ -35,7 +35,6 @@ class InformationPresenter: InfoPresenterDelegate {
                 //This line is for SwiftyJSON
                 //let json = JSON(userInfo)
                 self?.user = userInfo
-                //self?.fetchUserImage(user: userIn.fo)
                 self?.mainView?.presentInfo()
                 print("User's data fetched perfectly. \(userInfo)")
             case .failure(let error):
@@ -62,13 +61,15 @@ class InformationPresenter: InfoPresenterDelegate {
         }
     }
     
-    func fetchUserImage(user: User) -> UIImage {
-        //Use alamofire to fetch the user's image using the image url sent from the API call
-        //then, return the image so it can be used in the View Layer.
-        var image = UIImage()
-        return image
+    func fetchUserImage(url: String) -> UIImage {
+        if let url = URL(string: url){
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data){
+                    return image
+                }
+            }
+        }
+        return UIImage()
     }
-    
-    
     
 }
